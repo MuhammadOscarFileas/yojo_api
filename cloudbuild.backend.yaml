@@ -41,7 +41,7 @@ steps:
         "5000",
         "--region",
         "us-central1",
-        "--allow-unauthenticated",
+        "--allow-unauthenticated"
       ]
 
 # Log hanya akan disimpan di Google Cloud Logging
