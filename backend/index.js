@@ -15,7 +15,7 @@ import * as models from "./models/index.js";
 import "./models/association.js";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // Middleware
 app.use(cors());
