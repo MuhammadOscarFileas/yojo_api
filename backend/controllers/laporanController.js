@@ -1,6 +1,4 @@
-// controllers/laporanController.js
 import Laporan from "../models/laporanmodel.js";
-//import { uploadToGCS } from "../utils/gcs.js";
 
 export const getAllLaporan = async (req, res) => {
   try {
@@ -42,6 +40,30 @@ export const deleteLaporan = async (req, res) => {
     res.status(200).json({ message: "Laporan deleted" });
   } catch (err) {
     console.error("Error deleting laporan:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const editLaporan = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { moda, topik, koridor, deskripsi } = req.body;
+
+    const laporan = await Laporan.findByPk(id);
+    if (!laporan) {
+      return res.status(404).json({ message: "Laporan tidak ditemukan" });
+    }
+
+    laporan.moda = moda || laporan.moda;
+    laporan.topik = topik || laporan.topik;
+    laporan.koridor = koridor !== undefined ? koridor : laporan.koridor;
+    laporan.deskripsi = deskripsi || laporan.deskripsi;
+
+    await laporan.save();
+
+    res.status(200).json({ message: "Laporan berhasil diperbarui", laporan });
+  } catch (err) {
+    console.error("Error editing laporan:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
