@@ -27,12 +27,17 @@ export const createLaporan = async (req, res) => {
       //file_url
     });
 
-    res.status(201).json(laporan);
+    res.status(200).json({
+      message: "Laporan created successfully",
+      data: laporan,
+      status: "success",
+    });
   } catch (err) {
     console.error("Error creating laporan:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 export const deleteLaporan = async (req, res) => {
   try {
