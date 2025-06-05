@@ -10,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.get("/", getAllLaporan);
-router.post("/", createLaporan);
+router.get("/lapordaball", getAllLaporan);
+router.post("/lapordab", createLaporan);
 router.put('/:id', editLaporan);
 router.delete("/:id", deleteLaporan);
 
